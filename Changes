@@ -1,0 +1,65 @@
+Revision history for Parse::IRCLog
+
+0.42    2004-12-08
+        bump requirements to perl 5.8 (5.6 has an overload bug, it seems)
+
+1.40    2004-12-07
+        added end-point exclusion
+        rewrote exensibilty as subclassing, like a sane person would
+        eliminated most numifications
+
+1.34    2004-08-24 15:45
+        minor refactoring of new() to allow extensible non-object returns
+        added ::Constant
+
+1.32    2004-08-23 09:25
+        packaging brought in line with internal specs
+        updated SEE ALSO and TODO
+
+1.30    2004-08-20 15:15
+        refactored; all type-based methods collected and extensible
+
+1.20 	  2004-08-19 15:35
+        from_string method added
+
+1.016	  2004-07-22 10:35
+        statement coverage at 100%
+        branch coverage at 100%
+        condition coverage at 100%
+        sub coverage at 100%
+        pod coverage at 100%
+
+1.015	  2004-07-21 13:35
+        more tests!
+        (x | y) & z now works
+
+1.013	  2004-07-21 12:40
+        more tests!
+        Number::Range cross-ref
+        fix typos in changelog (it's not 2005 yet!)
+
+1.012   2004-07-20 15:35
+        add Union.pm
+        enable |-overloaded union of ranges
+
+1.011   2004-07-19 14:55
+        fix misuse of "union"
+
+1.010   2004-07-06 22:36
+        better documentation for infinite tolerances
+        infinite & infinite yields infinite
+        more tests!
+        POD formatting error
+
+1.009   2004-07-06 16:21
+        POD formatting error
+
+1.008   2004-07-06 16:18
+        add 'infinite' method (still sketchy)
+        add & operator overloading
+        add tests for the above
+        fix some test formatting errors
+
+1.007	  2004-07-01 23:05
+        refactored awful "values" sub (it's still ugly)
+        return simple scalars when tolerance == 0

@@ -1,11 +1,12 @@
 
-package Parse::IRCLog;
-use Parse::IRCLog::Result;
-
 use strict;
 use warnings;
 
-use Carp;
+package Parse::IRCLog;
+
+use Carp ();
+use Parse::IRCLog::Result;
+use Symbol ();
 
 =head1 NAME
 
@@ -13,13 +14,13 @@ Parse::IRCLog -- parse internet relay chat logs
 
 =head1 VERSION
 
-version 1.10
+version 1.101
 
- $Id: IRCLog.pm,v 1.6 2005/07/02 00:11:55 rjbs Exp $
+ $Id$
 
 =cut
 
-our $VERSION = '1.10';
+our $VERSION = '1.101';
 
 =head1 SYNOPSIS
 
@@ -65,7 +66,7 @@ guessing what ruleset to use.
 
 sub new { 
   my $class = shift;
-  croak "new is a class method" if ref $class;
+  Carp::croak "new is a class method" if ref $class;
 
   $class->construct->init;
 }
@@ -183,10 +184,11 @@ sub parse {
   my $self = shift;
   $self = $self->new unless ref $self;
 
-	open FILE, shift;
+  my $symbol = Symbol::gensym;
+	open $symbol, "<", $_[0] or die "couldn't open $_[0]: $!";
 
 	my @events;
-	push @events, $self->parse_line($_) while (<FILE>);
+	push @events, $self->parse_line($_) while (<$symbol>);
 	Parse::IRCLog::Result->new(@events);
 }
 

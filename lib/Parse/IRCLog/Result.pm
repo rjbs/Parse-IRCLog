@@ -4,11 +4,19 @@ package Parse::IRCLog::Result;
 use strict;
 use warnings;
 
-our $VERSION = sprintf "%d.%03d", q$Revision: 1.2 $ =~ /(\d+)/g;
-
 =head1 NAME
 
 Parse::IRCLog::Result -- results of parsing an IRC logfile
+
+=head1 VERSION
+
+version 1.101
+
+  $Id$
+
+=cut
+
+our $VERSION = '1.101';
 
 =head1 SYNOPSIS
 
@@ -66,7 +74,7 @@ Provide iterator functionality.  Five minutes of looking didn't find a mixin
 class for iterators, so I might end up just delegating iterator methods to a
 tied array object or something.  This can wait.
 
-=head1 AUTHORS
+=head1 AUTHOR
 
 Ricardo SIGNES E<lt>rjbs@cpan.orgE<gt>
 

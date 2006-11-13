@@ -1,5 +1,5 @@
 Revision history for Parse::IRCLog
 
-1.101   2006-11-06
+1.101   2006-11-13
         started a new changelog; previous one was rubbish; ARGH!
         avoid global fh

@@ -1,0 +1,14 @@
+Parse::IRCLog -- parse internet relay chat logs
+
+This module provides a simple framework to parse IRC logs in arbitrary
+formats.
+
+A parser has a set of regular expressions for matching different events
+that occur in an IRC log, such as "msg" and "action" events. Each line
+in the log is matched against these rules and a result object,
+representing the event stream, is returned.
+
+The rule set, described in greated detail below, can be customized by
+subclassing Parse::IRCLog. In this way, Parse::IRCLog can provide a
+generic interface for log analysis across many log formats, including
+custom formats.

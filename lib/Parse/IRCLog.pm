@@ -14,13 +14,11 @@ Parse::IRCLog -- parse internet relay chat logs
 
 =head1 VERSION
 
-version 1.101
-
- $Id$
+version 1.102
 
 =cut
 
-our $VERSION = '1.101';
+our $VERSION = '1.102';
 
 =head1 SYNOPSIS
 

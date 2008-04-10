@@ -3,7 +3,7 @@ use strict;
 use warnings;
 use Test::More;
 
-plan skip_all "set RELEASE_TESTING to test" unless $ENV{RELEASE_TESTING};
+plan skip_all => "set RELEASE_TESTING to test" unless $ENV{RELEASE_TESTING};
 
 if (eval { require Test::Perl::Critic }) {
   Test::Perl::Critic::all_critic_ok();

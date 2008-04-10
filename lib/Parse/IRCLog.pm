@@ -10,7 +10,7 @@ use Symbol ();
 
 =head1 NAME
 
-Parse::IRCLog -- parse internet relay chat logs
+Parse::IRCLog - parse internet relay chat logs
 
 =head1 VERSION
 

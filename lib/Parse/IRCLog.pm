@@ -124,14 +124,28 @@ sub patterns {
   return $_[0]{patterns} if ref $_[0] and defined $_[0]{patterns};
 
   my $p;
-  $p->{nick} = qr/([\w\[\]\{\}\(\)^]+)/;
 
-  $p->{chan} = qr/((?:&|#)[\w\[\]\{\}\(\)&#^]*)/;
+  # nick and chan are (mostly) specified in RFC2812, section 2.3.1
+
+  my $letter  = qr/[\x41-\x5A\x61-\x7A]/;   # A-Z / a-z
+  my $digit   = qr/[\x30-\x39]/;            # 0-9
+  my $special = qr/[\x5B-\x60\x7B-\x7D]/;   # [\]^_`{|}
+
+  $p->{nick} = qr/( (?: $letter | $special )
+                    (?: $letter | $digit | $special | - )* )/x;
+
+  my $channelid = qr/[A-Z0-9]{5}/;
+  my $chanstring = qr/[^\x00\a\r\n ,:]*/;
+
+  $p->{chan} = qr/( (?: \# | \+ | !$channelid | & ) $chanstring 
+                    (?: :$chanstring )? )/x;
+
+  # the other regexes are more relevant to the way irssi formats logs
 
   $p->{nick_container} = qr/
   <
     \s*
-    ([%@])?
+    ([+%@])?
     \s*
     $p->{nick}
     (?:

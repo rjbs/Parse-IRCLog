@@ -1,5 +1,8 @@
 Revision history for Parse::IRCLog
 
+1.103     2009-08-10
+          patch from Jean-Baptiste Mazon to allow more legal nicks and chans
+
 1.102     2008-04-09
           packaging fixes
 

@@ -7,7 +7,7 @@ use warnings;
 use_ok('Parse::IRCLog');
 
 isa_ok(
-	my $parser = Parse::IRCLog->new, 
+	my $parser = Parse::IRCLog->new,
 	'Parse::IRCLog'
 );
 

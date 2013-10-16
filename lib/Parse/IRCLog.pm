@@ -1,23 +1,11 @@
 use strict;
 use warnings;
-
 package Parse::IRCLog;
+# ABSTRACT: parse internet relay chat logs
 
 use Carp ();
 use Parse::IRCLog::Result;
 use Symbol ();
-
-=head1 NAME
-
-Parse::IRCLog - parse internet relay chat logs
-
-=head1 VERSION
-
-version 1.104
-
-=cut
-
-our $VERSION = '1.104';
 
 =head1 SYNOPSIS
 
@@ -48,27 +36,23 @@ interface for log analysis across many log formats, including custom formats.
 Normally, the C<parse> method is used to create a result set without storing a
 parser object, but a parser may be created and reused.
 
-=head1 METHODS
+=method new
 
-=over
-
-=item C<< new >>
-
-This method constructs a new parser (with C<<$class->construct>>) and
-initializes it (with C<<$obj->init>>).  Construction and initialization are
+This method constructs a new parser (with C<< $class->construct >>) and
+initializes it (with C<< $obj->init >>).  Construction and initialization are
 separated for ease of subclassing initialization for future pipe dreams like
 guessing what ruleset to use.
 
 =cut
 
-sub new { 
+sub new {
   my $class = shift;
   Carp::croak "new is a class method" if ref $class;
 
   $class->construct->init;
 }
 
-=item C<< construct >>
+=method construct
 
 The parser constructor just returns a new, empty parser object.  It should be a
 blessed hashref.
@@ -77,7 +61,7 @@ blessed hashref.
 
 sub construct { bless {} => shift; }
 
-=item C<< init >>
+=method init
 
 The initialization method configures the object, loading its ruleset.
 
@@ -89,7 +73,7 @@ sub init {
   $self;
 }
 
-=item C<< patterns >>
+=method patterns
 
 This method returns a reference to a hash of regular expressions, which are
 used to parse the logs.  Only a few, so far, are required by the parser,
@@ -136,7 +120,7 @@ sub patterns {
   my $channelid = qr/[A-Z0-9]{5}/;
   my $chanstring = qr/[^\x00\a\r\n ,:]*/;
 
-  $p->{chan} = qr/( (?: \# | \+ | !$channelid | & ) $chanstring 
+  $p->{chan} = qr/( (?: \# | \+ | !$channelid | & ) $chanstring
                     (?: :$chanstring )? )/x;
 
   # the other regexes are more relevant to the way irssi formats logs
@@ -182,7 +166,9 @@ sub patterns {
   $p;
 }
 
-=item C<< parse($file) >>
+=method parse
+
+  my $result = $parser->parse($file)
 
 This method parses the file named and returns a Parse::IRCLog::Result object
 representing the results.  The C<parse> method can be called on a parser object
@@ -203,7 +189,9 @@ sub parse {
   Parse::IRCLog::Result->new(@events);
 }
 
-=item C<< parse_line($line) >>
+=method parse_line
+
+  my $info = $parser->parse_line($line);
 
 This method is used internally by C<parse> to turn each line into an event.
 While it could someday be made slick, it's adequate for now.  It attempts to
@@ -225,8 +213,6 @@ sub parse_line {
   return { type => 'unknown', text => $line };
 }
 
-=back
-
 =head1 TODO
 
 Write a few example subclasses for common log formats.
@@ -237,17 +223,6 @@ Possibly make the C<patterns> sub an module, to allow subclassing to override
 only one or two patterns.  For example, to use the default C<nick> pattern but
 override the C<nick_container> or C<action_leader>.  This sounds like a very
 good idea, actually, now that I write it down.
-
-=head1 AUTHOR
-
-Ricardo SIGNES E<lt>rjbs@cpan.orgE<gt>
-
-=head1 COPYRIGHT
-
-Copyright 2004 by Ricardo Signes.
-
-This program is free software; you can redistribute it and/or modify it under
-the same terms as Perl itself.
 
 =cut
 

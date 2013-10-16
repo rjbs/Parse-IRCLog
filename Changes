@@ -1,6 +1,8 @@
 Revision history for Parse::IRCLog
 
 {{$NEXT}}
+
+1.105     2013-10-15 21:39:25 America/New_York
           update repo and bugtracker URLs
 
 1.104     2010-07-10

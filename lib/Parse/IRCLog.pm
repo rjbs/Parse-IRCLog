@@ -104,7 +104,9 @@ configuration.  Expect more rulesets to be included in future distributions.
 =cut
 
 sub patterns {
-  return $_[0]{patterns} if ref $_[0] and defined $_[0]{patterns};
+  my ($self) = @_;
+
+  return $self->{patterns} if ref $self and defined $self->{patterns};
 
   my $p;
 
@@ -163,6 +165,7 @@ sub patterns {
     (.+)
   /x;
 
+  $self->{patterns} = $p if ref $self;
   $p;
 }
 

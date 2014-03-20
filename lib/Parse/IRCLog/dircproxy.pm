@@ -1,10 +1,8 @@
 use strict;
 use warnings;
 
-use Parse::IRCLog;
-
 package Parse::IRCLog::dircproxy;
-our @ISA = qw(Parse::IRCLog);
+use parent 'Parse::IRCLog';
 
 sub patterns {
     return $_[0]{patterns} if ref $_[0] and defined $_[0]{patterns};

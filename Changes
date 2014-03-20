@@ -1,6 +1,7 @@
 Revision history for Parse::IRCLog
 
 {{$NEXT}}
+          add dircproxy subclass (thanks, Richard Lewis)
 
 1.105     2013-10-15 21:39:25 America/New_York
           update repo and bugtracker URLs
